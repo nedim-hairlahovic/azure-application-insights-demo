@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+**/applicationinsights-agent-*.jar
+**/applicationinsights.log
