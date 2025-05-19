@@ -1,0 +1,63 @@
+name: spring-microservices-template
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: product-postgres
+    environment:
+      POSTGRES_DB: productdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+
+  mongo:
+    image: mongo:8
+    container_name: order-mongo
+    ports:
+      - "27017:27017"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"   # RabbitMQ broker
+      - "15672:15672" # RabbitMQ management dashboard
+
+  product-service:
+    image: product-service:latest
+    container_name: product-service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/productdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    depends_on:
+      - postgres
+
+  order-service:
+    image: order-service:latest
+    container_name: order-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/ordersdb
+      PRODUCT_SERVICE_URL: http://product-service:8081
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+    depends_on:
+      - mongo
+      - product-service
+      - rabbitmq
+
+  notification-service:
+    image: notification-service:latest
+    container_name: notification-service
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+    depends_on:
+      - rabbitmq
