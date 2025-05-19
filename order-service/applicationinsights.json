@@ -1,0 +1,6 @@
+{
+  "connectionString": "InstrumentationKey=ed5b1c3e-eca9-4569-9546-f7103dd02066;IngestionEndpoint=https://germanywestcentral-1.in.applicationinsights.azure.com/;LiveEndpoint=https://germanywestcentral.livediagnostics.monitor.azure.com/;ApplicationId=737627f1-dcc9-4500-9a37-1adbbceb9c2a",
+  "role": {
+    "name": "order-service"
+  }
+}

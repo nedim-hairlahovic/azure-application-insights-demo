@@ -3,10 +3,12 @@ package dev.nhairlahovic.product.controller;
 import dev.nhairlahovic.product.model.Product;
 import dev.nhairlahovic.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/products")
 @RequiredArgsConstructor
@@ -16,6 +18,7 @@ public class ProductController {
 
     @GetMapping()
     public List<Product> getProducts() {
+        log.info("Called getProducts method");
         return productService.getProducts();
     }
 

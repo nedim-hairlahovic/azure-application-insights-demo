@@ -8,8 +8,10 @@ import dev.nhairlahovic.order.model.OrderNotification;
 import dev.nhairlahovic.order.model.Product;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ServiceBusNotificationService implements NotificationService {
@@ -32,7 +34,6 @@ public class ServiceBusNotificationService implements NotificationService {
         // Send the message to the Azure Service Bus queue/topic
         senderClient.sendMessage(message);
 
-        System.out.println("Sent order notification message: " + messageBody);
-
+        log.info("Sent order notification message: " + messageBody);
     }
 }

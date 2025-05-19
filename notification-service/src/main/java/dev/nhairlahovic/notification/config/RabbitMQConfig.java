@@ -13,28 +13,28 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    @Getter
-    @Value("${rabbitmq.order.queue}")
-    private String orderQueue;
-
-    @Bean
-    public Queue orderNotificationsQueue() {
-        return new Queue(orderQueue, true);
-    }
-
-    @Bean
-    public MessageConverter jsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
-    }
-
-    @Bean
-    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(
-            ConnectionFactory connectionFactory,
-            MessageConverter jsonMessageConverter
-    ) {
-        var factory = new SimpleRabbitListenerContainerFactory();
-        factory.setConnectionFactory(connectionFactory);
-        factory.setMessageConverter(jsonMessageConverter);
-        return factory;
-    }
+//    @Getter
+//    @Value("${rabbitmq.order.queue}")
+//    private String orderQueue;
+//
+//    @Bean
+//    public Queue orderNotificationsQueue() {
+//        return new Queue(orderQueue, true);
+//    }
+//
+//    @Bean
+//    public MessageConverter jsonMessageConverter() {
+//        return new Jackson2JsonMessageConverter();
+//    }
+//
+//    @Bean
+//    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(
+//            ConnectionFactory connectionFactory,
+//            MessageConverter jsonMessageConverter
+//    ) {
+//        var factory = new SimpleRabbitListenerContainerFactory();
+//        factory.setConnectionFactory(connectionFactory);
+//        factory.setMessageConverter(jsonMessageConverter);
+//        return factory;
+//    }
 }
