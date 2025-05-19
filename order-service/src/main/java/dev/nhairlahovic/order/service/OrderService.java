@@ -16,7 +16,7 @@ public class OrderService {
 
     private final ProductClient productClient;
     private final OrderRepository orderRepository;
-    private final OrderNotificationService notificationService;
+    private final NotificationService notificationService;
 
     public Order processOrder(OrderRequest orderRequest) {
         Product product = productClient.getProductById(orderRequest.getProductId());

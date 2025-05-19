@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class NotificationListener {
 
-    @RabbitListener(queues = "#{@rabbitMQConfig.getOrderQueue()}")
-    public void handleOrderNotification(OrderNotification notification) {
-        System.out.println("📩 New order received: " + notification);
-    }
+//    @RabbitListener(queues = "#{@rabbitMQConfig.getOrderQueue()}")
+//    public void handleOrderNotification(OrderNotification notification) {
+//        System.out.println("📩 New order received: " + notification);
+//    }
 }
